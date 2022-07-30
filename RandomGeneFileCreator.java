@@ -13,7 +13,7 @@ public class RandomGeneFileCreator {
 
         Random random = new Random();
 
-        for (int i = 1; i <= 2; i ++) {
+        for (int i = 1; i <= 3; i ++) {
             try {
                 PrintWriter pW = new PrintWriter("file" + i + ".csv");
 
