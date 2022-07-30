@@ -2,7 +2,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Test {
 
@@ -13,15 +12,24 @@ public class Test {
         ArrayList<String> metaDataList = new ArrayList<>();
 
         try {
+
             Scanner file = new Scanner(new File(path + "\\" + metaDataFile));
+
             while(file.hasNextLine()) {
+
                 String line = file.nextLine().strip();
+
                 if (! line.equals("testfiler")) {
+
                     String[] lineData = line.split(",");
+
                     metaDataList.add(lineData[0]);
+
                 }
             }
+
             file.close();
+
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -36,11 +44,14 @@ public class Test {
         ArrayList<String> sequenceFiles = createReadableFiles(path);
 
         for (String file : sequenceFiles) {
+
             testMap = sr.readImmuneRepertoire(path + "\\" + file);
             sr.addHashMap(testMap);
+
         }
 
         if (sr.size() > 0) {
+
             testMap = sr.getHashmap(0);
 
             while (sr.size() > 0) {
@@ -49,18 +60,21 @@ public class Test {
 
             int mostOcrs = 0;
             for (String key : testMap.keySet()) {
+
                 if (testMap.get(key).getAmount() > mostOcrs) {
                     mostOcrs = testMap.get(key).getAmount();
                 }
+
             }
 
-            System.out.println("Amount of elements in the hashmap: " + testMap.size() );
-            System.out.println("Most amount of occurances: " + mostOcrs);
+            System.out.println("Pattern(s) with the most occurrences across files: ");
 
             for (String key : testMap.keySet()) {
+
                 if (testMap.get(key).getAmount() == mostOcrs) {
                     System.out.println(testMap.get(key).toString());
                 }
+                
             }
         }
     }
@@ -71,7 +85,7 @@ public class Test {
 
         String[] testFolders = new String[] 
         {
-            "C:\\Users\\fredr\\GAMI\\Application projects\\Immune_analyzis\\Fredo\\testFiles",
+            "C:\\Users\\fredr\\GAMI\\Application projects\\Immune_analyzis\\testFiles",
         };
         
         for (String folder : testFolders) {
