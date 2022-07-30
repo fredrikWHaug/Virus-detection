@@ -5,8 +5,10 @@ public class Subsequence {
     private int amount;
 
     public Subsequence(String subsequence, int amount) {
+
         this.subsequence = subsequence;
         this.amount = amount;
+        
     }
 
     public int getAmount() {
